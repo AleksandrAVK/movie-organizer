@@ -22,7 +22,6 @@ class SearchBox extends Component {
             return this.props.changeStateSearchArr(data.Search)
         } else {
             alert("Movie not found");
-            // return this.props.changeStateSearchArr({Title:"Movie not found"})
         }
         
     }

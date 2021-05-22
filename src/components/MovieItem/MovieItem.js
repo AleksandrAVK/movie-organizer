@@ -10,8 +10,7 @@ class MovieItem extends Component {
                 <img className="movie-item__poster" src={Poster} alt={Title} />
                 <div className="movie-item__info">
                     <h3 className="movie-item__title">{Title}&nbsp;({Year})</h3>
-                    <button onClick={()=> {this.props.addFilmToList(imdbID)}} type="button" className="movie-item__add-button"> Добавить в список</button>
-                    {/* <button color="red" disabled={this.props.textButton === "Добавлено" ? true : false}  onClick={()=> {this.props.addFilmToList(imdbID)}} type="button" className="movie-item__add-button">{this.props.textButton}</button> */}
+                    <button disabled={this.props.disabled} onClick={()=> {this.props.addFilmToList(imdbID)}} type="button"  className={`movie-item__add-button ${this.props.class}`}> Добавить в список</button>
                 </div>
             </article>
         );

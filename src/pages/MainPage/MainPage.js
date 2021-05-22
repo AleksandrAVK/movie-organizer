@@ -12,17 +12,13 @@ class MainPage extends Component {
         textButton: 'Добавить в список'
     }
 
-
     changeStateSearchArr = (data) => {
         this.setState({ searchArr: data });
-        // console.log(this.state.searchArr);
-        // console.log(this.state.arrFromFavoriteList);
+
     }
     addFilmToList = (id) => {
         const isContainsInFavorites = this.state.arrFromFavoriteList.find((film) => { return film.imdbID === id });
-        // this.setState({textButton : "Добавлено"});
         if (isContainsInFavorites) {
-        //    console.log(this.state.textButton)
             return null
         }
         const myChoice = this.state.searchArr.find((film) => { return film.imdbID === id });

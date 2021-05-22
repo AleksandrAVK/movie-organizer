@@ -31,14 +31,14 @@ class Movies extends Component {
                 (this.props.searchArr.length > 0) &&
                    this.props.searchArr.map((movie) => (
                         <li className="movies__item" key={movie.imdbID}>
-                            <MovieItem {...movie} addFilmToList={this.props.addFilmToList} textButton={this.props.textButton} />
+                            <MovieItem {...movie} disabled ={false} addFilmToList={this.props.addFilmToList} textButton={this.props.textButton} />
                         </li>
                     ))
                 }
                 {  !(this.props.searchArr.length > 0 ) &&
                     this.state.movies.map((movie) => (
                         <li className="movies__item" key={movie.imdbID}>
-                            <MovieItem {...movie} />
+                            <MovieItem {...movie} disabled ={true} class={"movies__item_button-red"}/>
                         </li>
                     ))}
 
