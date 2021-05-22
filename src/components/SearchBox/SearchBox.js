@@ -11,6 +11,23 @@ class SearchBox extends Component {
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
     }
+
+
+
+    getData = async () => {
+        const res = await fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(this.state.searchLine)}&apikey=dbf0b196`);
+        const data = await res.json();
+        if(data.Response === "True" ){
+            console.log(data);
+            return this.props.changeStateSearchArr(data.Search)
+        } else {
+            alert("Movie not found");
+            // return this.props.changeStateSearchArr({Title:"Movie not found"})
+        }
+        
+    }
+
+
     render() {
         const { searchLine } = this.state;
 
@@ -31,6 +48,7 @@ class SearchBox extends Component {
                         type="submit"
                         className="search-box__form-submit"
                         disabled={!searchLine}
+                        onClick={this.getData}
                     >
                         Искать
                     </button>
@@ -39,5 +57,5 @@ class SearchBox extends Component {
         );
     }
 }
- 
+
 export default SearchBox;

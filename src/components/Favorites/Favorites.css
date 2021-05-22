@@ -31,3 +31,13 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+.favorites__selected-movie {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid greenyellow;
+    margin-bottom: 9px;
+    align-items: center;
+}
+.favorites__delete-buton-disabled {
+    background: red;
+}

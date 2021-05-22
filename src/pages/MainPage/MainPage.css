@@ -17,3 +17,32 @@
 .main-page__favorites {
     width: 35%;   
 }
+@media all and (min-width: 320px) and (max-width: 700px) {
+    .main-page__content {
+        padding: 42px calc(50% - 500px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .search-box__form-input {
+        box-sizing: border-box;
+        display: block;
+        margin-top: 5px;
+        width: 200px;
+        font-size: 14px;
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 8, 7, .5);
+    }
+
+    .main-page__main-section {
+        padding-left: 40px;
+        box-sizing: border-box;
+        width: 60%;
+        margin: 0 auto;
+    }
+    .main-page__favorites {
+        width: 35%;
+        margin: 0 auto;
+    }
+  }
