@@ -15,7 +15,7 @@ class SearchBox extends Component {
 
 
     getData = async () => {
-        const res = await fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(this.state.searchLine)}&apikey=dbf0b196`);
+        const res = await fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(this.state.searchLine)}&apikey=dbf0b196`);
         const data = await res.json();
         if(data.Response === "True" ){
             console.log(data);
