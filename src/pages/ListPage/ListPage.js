@@ -33,7 +33,7 @@ class ListPage extends Component {
                     // console.log(idFilm);
                     let NewList = async () => {
                         // console.log(idFilm);
-                        const res = await fetch(`http://www.omdbapi.com/?i=${idFilm}&apikey=dbf0b196`);
+                        const res = await fetch(`https://www.omdbapi.com/?i=${idFilm}&apikey=dbf0b196`);
                         // console.log(res);
                         const data = await res.json();
                         // console.log(data);
