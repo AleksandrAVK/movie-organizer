@@ -27,6 +27,7 @@ Cкопировать репозиторий;
 Выполнить команду npm install;
 Запустить сервер npm run start.
 
+Технологии, используемые в проекте: JavaScript, React, NPM, Babel, CSS, HTML.
 
 ENG
 
@@ -56,3 +57,5 @@ To deploy a project locally, you must:
 Copy Repository;
 Run npm install;
 Start the npm run start server.
+
+Technologies JavaScript, React, NPM, Babel, CSS, HTML.
