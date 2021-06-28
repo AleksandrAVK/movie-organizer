@@ -13,18 +13,15 @@ class ListPage extends Component {
     componentDidMount() {
         const idParams = this.props.match.params;
         console.log(idParams);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
+
 
         let getNewList = async () => {
             const res = await fetch(`https://acb-api.algoritmika.org/api/movies/list/${idParams.id}`);
             const data = await res.json();
-            // console.log(data);
             this.setState({ title: data.title, moviesID: data.movies });
-            // console.log(this.state.moviesID);
             return data;
         }
-        // console.log(getNewList);
+    
 
         const selectedMoviesList = getNewList()
             .then((data) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Favorites.css';
+import { Link } from 'react-router-dom'
 
 
 class Favorites extends Component {
@@ -9,7 +10,8 @@ class Favorites extends Component {
             { imdbID: 'tt0068646', Title: 'The Godfather', Year: 1972 }
         ],
         listNameFromInput: '',
-        disabled: false
+        disabled: false,
+        linkFromServer: ''
     }
 
     getIdSearchFilm = () => {
@@ -18,6 +20,11 @@ class Favorites extends Component {
         // console.log(idFilm);
         return idFilm
     };
+
+
+    linkFromServer = (data) => {
+        this.setState({ linkFromServer: data })
+    }
 
 
     getListFilms = async () => {
@@ -35,7 +42,8 @@ class Favorites extends Component {
                 ),
             })
         const data = await res.json();
-        window.open(`/list/${data.id}`)
+        this.linkFromServer(data.id);
+
     }
 
     changeInputName = (event) => {
@@ -44,7 +52,6 @@ class Favorites extends Component {
     }
 
     blockSaveButton = () => {
-        alert("Ваш список сформирован");
         this.setState({ disabled: !this.state.disabled })
     }
 
@@ -57,15 +64,15 @@ class Favorites extends Component {
                     {this.props.arrFromFavoriteList.map((item) => {
                         return <div className="favorites__selected-movie">
                             <li key={item.imdbID}>{item.Title} ({item.Year}) </li>
-                            <button className={this.state.disabled ? "favorites__delete-buton-disabled" : "favorites__delete-buton"} disabled={this.state.disabled} onClick={() => { this.props.deleteFilm(item.imdbID)}}>Удалить</button>
+                            <button className={this.state.disabled ? "favorites__delete-buton-disabled" : "favorites__delete-buton"} disabled={this.state.disabled} onClick={() => { this.props.deleteFilm(item.imdbID) }}>Удалить</button>
                         </div>;
                     })}
                 </ul>
-                { this.state.disabled ?
-                    <button onClick={this.getListFilms} type="button" className="favorites__save">Перейти к списку</button>
+                {this.state.disabled ?
+                    <Link className="favorites__save" to={`/list/${this.state.linkFromServer}`}>Перейти к списку</Link>
                     :
-                    <button onClick={this.blockSaveButton} type="button" className="favorites__save">Сохранить список</button>
-                    
+                    <button onClick={() => { this.getListFilms(); this.blockSaveButton() }} type="button" className="favorites__save">Сохранить список</button>
+
                 }
             </div>
         );
@@ -73,7 +80,4 @@ class Favorites extends Component {
 }
 
 
-// ссылка 
-
 export default Favorites;
-// onClick={}
