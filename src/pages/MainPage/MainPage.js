@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './MainPage.css';
+import { changeFlag } from '../../redux/action'
+import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import SearchBox from '../../components/SearchBox/SearchBox';
 import Movies from '../../components/Movies/Movies';
@@ -35,6 +37,8 @@ class MainPage extends Component {
     render() {
         return (
             <div className="main-page">
+                <button onClick={() => { this.props.change() }}>1111</button>
+                <p>{this.props.flag}</p>
                 <Header />
                 <main className="main-page__content">
                     <section className="main-page__main-section">
@@ -54,4 +58,14 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage;
+
+const mapStateToProps = (state) => {
+    return {
+        flag: state.flag
+    }
+};
+const mapDispatchToProps = dispatch => ({
+    change: () => dispatch(changeFlag())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

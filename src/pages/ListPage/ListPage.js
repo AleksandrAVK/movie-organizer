@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './ListPage.css';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { changeFlag } from '../../redux/action';
 
+let idParams;
 class ListPage extends Component {
     state = {
         movies: [
@@ -11,13 +15,14 @@ class ListPage extends Component {
     }
 
     componentDidMount() {
-        const idParams = this.props.match.params;
-        console.log(idParams);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
+        // const idParams = this.props.match.params.id;
+        // console.log(idParams);
+        idParams = this.props.link;
+        console.log("idParams from link", this.props.link);
+
 
         let getNewList = async () => {
-            const res = await fetch(`https://acb-api.algoritmika.org/api/movies/list/${idParams.id}`);
+            const res = await fetch(`https://acb-api.algoritmika.org/api/movies/list/${idParams}`);
             const data = await res.json();
             // console.log(data);
             this.setState({ title: data.title, moviesID: data.movies });
@@ -47,14 +52,17 @@ class ListPage extends Component {
             });
     }
 
-    backHome = () => {
+    // backHome = () => {
 
-        window.open("/")
+    //     window.open("/")
 
-    }
+    // }
     render() {
         return (
             <div className="list-page">
+                {console.log("хер", this.props.link)}
+                <button onClick={() => { this.props.change() }}>1111</button>
+                <p>{this.props.flag}</p>
                 <h1 className="list-page__title">{this.state.title}</h1>
                 <ul>
                     {this.state.movies.map((item) => {
@@ -70,7 +78,8 @@ class ListPage extends Component {
                             </>
                         );
                     })}
-                    <button type="button" onClick={this.backHome}>Назад </button>
+
+                    <Link to={'/'}>Назад</Link>
 
                 </ul>
             </div>
@@ -78,4 +87,14 @@ class ListPage extends Component {
     }
 }
 
-export default ListPage;
+const mapStateToProps = (state) => {
+    return {
+        link: state.link,
+        flag: state.flag
+    }
+};
+const mapDispatchToProps = dispatch => ({
+    change: () => dispatch(changeFlag())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
