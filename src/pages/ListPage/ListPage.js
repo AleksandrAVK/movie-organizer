@@ -67,8 +67,7 @@ class ListPage extends Component {
                             </>
                         );
                     })}
-                    <button type="button" onClick={this.backHome}>Назад </button>
-
+                    <Link to={'/'}>Назад</Link>
                 </ul>
             </div>
         );
